@@ -1,0 +1,1 @@
+# bitnodes-coordinate-bot

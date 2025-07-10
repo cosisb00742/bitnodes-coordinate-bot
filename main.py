@@ -1,12 +1,12 @@
 import requests
 import time
-import os
 import threading
 from collections import defaultdict
-from datetime import datetime
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+# ✅ Replace with your own token & chat ID
+TELEGRAM_BOT_TOKEN = "7998832563:AAEzJhryF2y5dMmW0WSAmf1wC4-hr5amYg4"
+TELEGRAM_CHAT_ID = "6442326239"
+
 API_URL = "https://bitnodes.io/api/v1/snapshots/latest/"
 CHECK_INTERVAL = 300  # seconds (5 minutes)
 THRESHOLD_PERCENT = 10
@@ -63,16 +63,11 @@ def analyze_and_alert():
                     action = "LONG / BUY" if percent_change > 0 else "SHORT / SELL"
 
                     msg = (
-                        f"⚡ Bitnodes Geo Spike Detected!
-"
-                        f"📍 Location: {country}
-"
-                        f"{'📈' if percent_change > 0 else '📉'} Node Change: {percent_change:.2f}%
-"
-                        f"🪙 Affected Coin: {coin}
-"
-                        f"Sentiment: {sentiment}
-"
+                        f"⚡ Bitnodes Geo Spike Detected!\n"
+                        f"📍 Location: {country}\n"
+                        f"{'📈' if percent_change > 0 else '📉'} Node Change: {percent_change:.2f}%\n"
+                        f"🪙 Affected Coin: {coin}\n"
+                        f"Sentiment: {sentiment}\n"
                         f"Suggested Action: {action}"
                     )
                     send_telegram_message(msg)
